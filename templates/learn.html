@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase Learning</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .category-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .category-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .category-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 30px;
+            padding: 50px;
+        }
+
+        .grid-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .grid-item img {
+            width: 110px;
+            height: 100px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .grid-item p {
+            margin: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>📚 SignEase Learning</h1>
+        <nav>
+            <a href="/dashboard">Home</a>
+            <a href="/learn">Learning</a>
+            <a href="/converter">Text-Sign Converter</a>
+            <a href="/gamemode">Game Mode</a>
+            <a href="/profile">Profile</a>
+        </nav>
+    </header>
+
+    <div class="category-buttons">
+        <button onclick="showCategory('alphabets')">Alphabets</button>
+        <button onclick="showCategory('numbers')">Numbers</button>
+        <button onclick="showCategory('weekdays')">Weekdays</button>
+        <button onclick="showCategory('months')">Months</button>
+        <button onclick="showCategory('basicwords')">Basic Words</button>
+    </div>
+
+    <div id="grid" class="grid-container"></div>
+
+    <script>
+        const data = {
+            alphabets: Array.from({ length: 26 }, (_, i) => {
+               const letter = String.fromCharCode(65 + i);
+               return { text: letter, img: `static/signs/${letter}.png` }; // UPDATED
+            }),
+            numbers: Array.from({ length: 10 }, (_, i) => ({ text: i, img: `static/signs/${i}.png` })), // UPDATED
+            weekdays: [
+                { text: 'Monday', img: 'static/signs/monday.png' }, // UPDATED
+                { text: 'Tuesday', img: 'static/signs/tuesday.png' },
+                { text: 'Wednesday', img: 'static/signs/wednesday.png' },
+                { text: 'Thursday', img: 'static/signs/thursday.png' },
+                { text: 'Friday', img: 'static/signs/friday.png' },
+                { text: 'Saturday', img: 'static/signs/saturday.png' },
+                { text: 'Sunday', img: 'static/signs/sunday.png' }
+            ],
+            months: [
+               { text: 'January', img: 'static/signs/january.png' }, // UPDATED
+               { text: 'February', img: 'static/signs/february.png' },
+               { text: 'March', img: 'static/signs/march.png' },
+               { text: 'April', img: 'static/signs/april.png' },
+               { text: 'May', img: 'static/signs/may.png' },
+               { text: 'June', img: 'static/signs/june.png' },
+               { text: 'July', img: 'static/signs/july.png' },
+               { text: 'August', img: 'static/signs/august.png' },
+               { text: 'September', img: 'static/signs/september.png' },
+               { text: 'October', img: 'static/signs/october.png' },
+               { text: 'November', img: 'static/signs/november.png' },
+               { text: 'December', img: 'static/signs/december.png' }
+            ],
+            basicwords: [
+               { text: 'Hello', img: 'static/signs/hello.png' }, // UPDATED
+               { text: 'Thank You', img: 'static/signs/thankyou.png' },
+               { text: 'Please', img: 'static/signs/please.png' },
+               { text: 'Welcome', img: 'static/signs/welcome.png' },
+               { text: 'Sorry', img: 'static/signs/sorry.png' },
+               { text: 'Yes', img: 'static/signs/yes.png' },
+               { text: 'No', img: 'static/signs/no.png' },
+               { text: 'Good', img: 'static/signs/good.png' },
+               { text: 'Morning', img: 'static/signs/morning.png' },
+               { text: 'Afternoon', img: 'static/signs/afternoon.png' },
+               { text: 'Night', img: 'static/signs/night.png' },
+               { text: 'Eat', img: 'static/signs/eat.png' },
+               { text: 'More', img: 'static/signs/more.png' },
+               { text: 'All Done', img: 'static/signs/alldone.png' }
+            ]
+        };
+
+
+        function showCategory(category) {
+            const container = document.getElementById('grid');
+            container.innerHTML = '';
+            data[category].forEach(item => {
+                container.innerHTML += `
+                    <div class="grid-item">
+                        <img src="${item.img}" alt="${item.text}">
+                        <p>${item.text}</p>
+                    </div>
+                `;
+            });
+        }
+
+        showCategory('alphabets'); // default
+    </script>
+</body>
+
+</html>

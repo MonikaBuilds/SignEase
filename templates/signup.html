@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Background Gradient */
+        body {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Signup Container */
+        .signup-container {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .signup-container:hover {
+            transform: scale(1.02);
+        }
+
+        .signup-container h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        /* Input Fields */
+        .signup-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .signup-container input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Password Container with Toggle */
+        .password-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .password-container input {
+            padding-right: 45px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .toggle-password:hover {
+            color: #007bff;
+        }
+
+        /* Signup Button */
+        .signup-container button {
+            width: 100%;
+            background: linear-gradient(135deg, #007bff, #00b4db);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .signup-container button:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            transform: scale(1.05);
+        }
+
+        /* Links & Footer */
+        .signup-container p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup-container p a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-container p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Terms Checkbox */
+        .terms {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 14px;
+            justify-content: start;
+        }
+
+        .terms input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .forgot-link {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            text-align: right;
+        }
+
+        .forgot-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .forgot-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    <div class="signup-container">
+        <h2>Create Your Account</h2>
+        
+        <form action="/signup" method="POST" onsubmit="return validateSignup()">
+            <input type="text" name="fullname" id="fullname" placeholder="Full Name" required autocomplete="off">
+            <input type="email" name="email" id="email" placeholder="Email Address" required autocomplete="off">
+            <input type="tel" name="contactnumber" id="contactnumber" placeholder="Contact Number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number" required autocomplete="off">
+            <input type="text" name="Username"  id="Username" placeholder="Username" required autocomplete="off">
+
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required autocomplete="new-password">
+                <i class="fas fa-eye-slash toggle-password" onclick="togglePassword(this, 'password')"></i>
+            </div>
+
+            <div class="password-container">
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required autocomplete="new-password">
+                <i class="fas fa-eye-slash toggle-password" onclick="togglePassword(this, 'confirmpassword')"></i>
+            </div>
+
+            <div class="forgot-link">
+                <a href="/forgetpassword">Forgot Password?</a>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the <a href="/termsnconditions">Terms & Conditions</a></label>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+
+    <script>
+       
+       function togglePassword(icon, fieldId) {
+        const field = document.getElementById(fieldId);
+        
+        if (!field) {
+            console.error("Field not found:", fieldId);
+            return;
+        }
+
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        } else {
+            field.type = 'password';
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        }
+        }
+
+        function validateSignup() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmpassword").value;
+            let contactNumber = document.getElementById("contactnumber").value;
+           
+
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Password Mismatch",
+                    text: "Passwords do not match! Please try again."
+                }).then(() => location.reload()); 
+                return false;
+            }
+            if (contactNumber.length !== 10 || isNaN(contactNumber)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Contact Number",
+                    text: "Phone number must be exactly 10 digits!"
+                }).then(() => location.reload()); 
+                return false;
+            }
+            return true;
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffeb3b;
+        }
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .welcome h2 {
+            color: #007bff;
+            font-size: 32px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .card i {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .card p {
+            font-size: 14px;
+            color: #555;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #007bff;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SignEase Dashboard</h1>
+        <nav>
+            <a href="/dashboard"><i class="fas fa-home"></i> Home</a>
+            <a href="/learn"><i class="fas fa-book-open"></i> Learn</a>
+            <a href="/converter"><i class="fas fa-exchange-alt"></i> Converter</a>
+            <a href="/gamemode"><i class="fas fa-sign-out-alt"></i> Game Mode</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="welcome">
+            <h2>Welcome back to SignEase!</h2>
+            <p>Explore your learning, track your progress, and improve your communication skills in sign language.</p>
+        </div>
+
+        <div class="cards">
+            <div class="card" onclick="location.href='/learn'">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Learn Sign Language</h3>
+                <p>Interactive lessons for alphabets, numbers, and daily-use signs.</p>
+            </div>
+            <div class="card" onclick="location.href='/converter'">
+                <i class="fas fa-language"></i>
+                <h3>Text ↔ Sign Converter</h3>
+                <p>Convert text into signs and sign images into text easily.</p>
+            </div>
+            <div class="card" onclick="location.href='/gamemode'">
+                <i class="fas fa-gamepad"></i>
+                <h3>Game Mode</h3>
+                <p>Engage with learning-based sign language games and quizzes.</p>
+            </div>
+            <div class="card" onclick="location.href='/community'">
+                <i class="fas fa-users"></i>
+                <h3>Ask a Question / Community</h3>
+                <p>Connect with learners and experts, ask doubts, and share knowledge.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 SignEase | Empowering communication for the Deaf and Mute community
+    </footer>
+
+</body>
+</html>

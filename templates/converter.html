@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase - Text & Sign Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin: 10px 0;
+        }
+
+        nav a.active, nav a:hover {
+            text-decoration: underline;
+        }
+
+        .converter-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px;
+        }
+
+        .converter-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+        }
+
+        .converter-section h2 {
+            text-align: center;
+        }
+
+        textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result-display {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SignEase - Converter</h1>
+        <nav>
+            <a href="/dashboard">Home</a>
+            <a href="/learn">Learning</a>
+            <a href="/converter">Text-Sign Converter</a>
+            <a href="/gamemode">Game Mode</a>
+            <a href="/profile">Profile</a>
+        </nav>
+    </header>
+
+    <div class="converter-container">
+        <div class="converter-section">
+            <h2>Text to Sign</h2>
+            <textarea id="textInput" placeholder="Type text here..."></textarea>
+            <button onclick="convertTextToSign()">Convert</button>
+            <div id="signOutput" class="result-display"></div>
+        </div>
+
+        <div class="converter-section">
+            <h2>Sign to Text</h2>
+            <input type="file" id="imageUpload" name="file" accept="image/*" multiple>
+            <button onclick="uploadImage()">Convert</button>
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script>
+        function convertTextToSign() {
+            let textInput = document.getElementById("textInput").value.trim().toLowerCase();
+        
+            fetch("/text-to-sign", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify({ text: textInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+               let signOutput = document.getElementById("signOutput");
+               signOutput.innerHTML = "";
+
+               if (data.error) {
+                 signOutput.innerText = data.error;
+                 return;
+                }
+
+                data.images.forEach(img => {
+                   let imgElement = document.createElement("img");
+                   imgElement.src = "/static/signs/" + img;
+                   imgElement.alt = "Sign Image";
+                   imgElement.style.margin = "10px";  // More spacing
+                   imgElement.style.width = "150px";  // Increased size
+                   imgElement.style.height = "150px"; // Increased size
+                   imgElement.style.borderRadius = "10px"; // Rounded corners
+                   signOutput.appendChild(imgElement);
+                });
+            })
+            .catch(error => {
+                document.getElementById("signOutput").innerText = "Error processing request.";
+            });
+        }
+
+
+
+
+        function uploadImage() {
+            let formData = new FormData();
+            let fileInput = document.getElementById("imageUpload");
+
+            if (!fileInput.files.length) {
+                alert("Please select at least one image file.");
+                return;
+            }
+
+            for (let i = 0; i < fileInput.files.length; i++) {
+                formData.append("files", fileInput.files[i]);
+            }
+
+            fetch("/signtotext", {
+               method: "POST",
+               body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+            if (data.error) {
+               document.getElementById("output").innerText = "Error: " + data.error;
+            } else {
+                document.getElementById("output").innerText = "Recognized Text: " + data.text;
+            }
+            })
+            .catch(error => {
+                 document.getElementById("output").innerText = "Error processing request.";
+            });
+        }    
+    </script>
+</body>
+
+</html>

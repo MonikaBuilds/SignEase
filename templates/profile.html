@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Profile Card */
+        .profile-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            width: 400px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 15px auto;
+            position: relative;
+            cursor: pointer;
+            border: 3px solid #007bff;
+            background: url('/mnt/data/image.png') center/cover no-repeat;
+        }
+
+        /* Input Fields */
+        .profile-details input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Save Button */
+        .save-btn {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .save-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            background: darkred;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <h2>My Profile</h2>
+        <form action="/profile" method="POST" enctype="multipart/form-data">
+
+        <!-- Profile Picture (Below My Profile) -->
+        <label for="profileUpload">
+            <img id="profileImage" src="{{ url_for('profile_pics', filename=user['profile_pic']) if user and user['profile_pic'] else url_for('static', filename='blank-profile.webp') }}" alt="Profile Image" class="profile-pic">
+        </label>
+        <input type="file" name="profile_pics" id="profileUpload" accept="image/*" style="display: none;" onchange="loadProfilePicture(event)">
+        
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <input type="text" name="name" id="name" placeholder="Enter Your Name">
+            <input type="text" name="contact" id="contact" placeholder="Enter Contact Number">
+            <input type="email" name="email" id="email" placeholder="Enter Gmail">
+            <input type="text" name="member_since" id="member_since" placeholder="Member Since (YYYY)">
+            <input type="date" name="dob" id="dob" placeholder="Enter Date of Birth">
+            <input type="email" name="alt_email" id="alt_email" placeholder="Enter Alternate Email">
+        </div>
+
+        <!-- Save Button -->
+        <button class="save-btn" onclick="saveProfile()">Save Profile</button>
+
+        <!-- Logout Button -->
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </form>
+    </div>
+
+    <script>
+        // Load Profile Picture
+    function loadProfilePicture(event) {
+       let file = event.target.files[0];
+
+       if (file) {
+         let reader = new FileReader();
+         reader.onload = function (e) {
+             document.getElementById('profileImage').src = e.target.result;
+         };
+         reader.readAsDataURL(file);
+         }
+    }
+
+// Save User Data
+function saveProfile() {
+    let formData = new FormData();
+    formData.append("name", document.getElementById("name").value);
+    formData.append("contact", document.getElementById("contact").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("member_since", document.getElementById("member_since").value);
+    formData.append("dob", document.getElementById("dob").value);
+    formData.append("alt_email", document.getElementById("alt_email").value);
+
+    let profilePic = document.getElementById("profileUpload").files[0];
+    if (profilePic) {
+        formData.append("profile_pics", profilePic);
+    }
+
+    fetch("/profile", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;  // Redirect to dashboard
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error) {
+            alert("User already exists. Reloading...");
+            location.reload();
+        } else {
+            alert("Profile saved successfully!");
+        }
+    })
+    .catch(error => {
+        alert("Error saving profile.");
+    });
+}
+
+function logout() {
+            alert("Logging out...");
+            window.location.href = '/';
+        }
+
+
+</script>
+
+</body>
+</html>

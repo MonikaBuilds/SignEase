@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase - Game Mode</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #81c4ff, #b3d8ff);
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin: 10px 0;
+        }
+
+        nav a.active, nav a:hover {
+            text-decoration: underline;
+        }
+
+        .game-container {
+            background-color: white;
+            width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #sign-image {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            border: 3px solid #007bff;
+            border-radius: 12px;
+        }
+
+        #options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SignEase - Game Mode</h1>
+        <nav>
+            <a href="/dashboard">Home</a>
+            <a href="/learn">Learning</a>
+            <a href="/converter">Text-Sign Converter</a>
+            <a href="/gamemode">Game Mode</a>
+            <a href="/profile">Profile</a>
+        </nav>
+    </header>
+    <div class="game-container">
+        <h2>Guess the Sign!</h2>
+        <img id="sign-image" src="" alt="Sign Image">
+        <div id="options-container"></div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const signs = [
+           { image: "static/signs/a.png", answer: "A" },
+           { image: "static/signs/b.png", answer: "B" },
+           { image: "static/signs/c.png", answer: "C" },
+           { image: "static/signs/d.png", answer: "D" },
+           { image: "static/signs/e.png", answer: "E" },
+           { image: "static/signs/f.png", answer: "F" },
+           { image: "static/signs/g.png", answer: "G" },
+           { image: "static/signs/h.png", answer: "H" },
+           { image: "static/signs/i.png", answer: "I" },
+           { image: "static/signs/j.png", answer: "J" },
+           { image: "static/signs/1.png", answer: "1" },
+           { image: "static/signs/2.png", answer: "2" },
+           { image: "static/signs/3.png", answer: "3" },
+           { image: "static/signs/4.png", answer: "4" },
+           { image: "static/signs/5.png", answer: "5" },
+           { image: "static/signs/6.png", answer: "6" },
+           { image: "static/signs/7.png", answer: "7" },
+           { image: "static/signs/8.png", answer: "8" },
+           { image: "static/signs/9.png", answer: "9" },
+           { image: "static/signs/good.png", answer: "good" },
+           { image: "static/signs/hello.png", answer: "hello" },
+           { image: "static/signs/eat.png", answer: "eat" },
+           { image: "static/signs/afternoon.png", answer: "afternoon" },
+           { image: "static/signs/morning.png", answer: "morning" },
+           { image: "static/signs/november.png", answer: "november" },
+           { image: "static/signs/july.png", answer: "july" },
+           { image: "static/signs/april.png", answer: "april" },
+           { image: "static/signs/february.png", answer: "february" },
+           { image: "static/signs/tuesday.png", answer: "tuesday" },
+           { image: "static/signs/friday.png", answer: "friday" },
+           { image: "static/signs/sunday.png", answer: "sunday" }
+        ];
+
+        const optionsList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J","1","2","3","4","5","6","7","8","9","Good","Hello","Eat","Afternoon","Morning","November","July","April","February","Tuesday","Friday","Sunday"];
+
+        const signImage = document.getElementById("sign-image");
+        const optionsContainer = document.getElementById("options-container");
+        const resultText = document.getElementById("result");
+
+        function loadRandomSign() {
+            const randomSign = signs[Math.floor(Math.random() * signs.length)];
+            signImage.src = randomSign.image;
+            signImage.alt = randomSign.answer;
+
+            const correctAnswer = randomSign.answer;
+            let options = [correctAnswer];
+
+            // Add 3 random incorrect options
+            while (options.length < 4) {
+                const randomOption = optionsList[Math.floor(Math.random() * optionsList.length)];
+                if (!options.includes(randomOption)) {
+                    options.push(randomOption);
+                }
+            }
+
+            // Shuffle options
+            options.sort(() => Math.random() - 0.5);
+
+            // Display buttons
+            optionsContainer.innerHTML = "";
+            options.forEach(option => {
+                const btn = document.createElement("button");
+                btn.textContent = option;
+                btn.className = "option-btn";
+                btn.onclick = () => checkAnswer(option, correctAnswer);
+                optionsContainer.appendChild(btn);
+            });
+
+            resultText.textContent = "";
+        }
+
+        function checkAnswer(selected, correct) {
+            if (selected === correct) {
+                resultText.textContent = "✅ Correct!";
+                resultText.style.color = "green";
+            } else {
+                resultText.textContent = `❌ Wrong! Correct Answer: ${correct}`;
+                resultText.style.color = "red";
+            }
+            setTimeout(loadRandomSign, 1500);
+        }
+
+        // Start game on load
+        loadRandomSign();
+    </script>
+</body>
+</html>

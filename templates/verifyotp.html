@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter OTP</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #88c3ff, #a0e1e5);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 40px; /* Increased padding */
+            border-radius: 15px; /* Slightly larger border radius */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 400px; /* Increased width */
+        }
+        h2 {
+            color: #0366fc;
+            margin-bottom: 15px;
+            font-size: 22px; /* Increased font size */
+        }
+        p {
+            color: #666;
+            font-size: 16px; /* Increased font size */
+            margin-bottom: 25px;
+        }
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Increased spacing */
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+        .otp-box {
+            width: 55px; /* Increased width */
+            height: 55px; /* Increased height */
+            text-align: center;
+            font-size: 22px;
+            border: 2px solid #a680ff;
+            border-radius: 10px;
+            background: #f5f3ff;
+            outline: none;
+        }
+        .btn {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            margin-top: 10px; /* Adjusted margin */
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Enter OTP</h2>
+    <p>We sent a 4-digit OTP to your email.</p>
+    <form action="/verifyotp" method="POST">
+        <div class="otp-container">
+            <input type="text" name="otp1" maxlength="1" class="otp-box">
+            <input type="text" name="otp2" maxlength="1" class="otp-box">
+            <input type="text" name="otp3" maxlength="1" class="otp-box">
+            <input type="text" name="otp4" maxlength="1" class="otp-box">
+        </div>
+        <button class="btn">Verify OTP</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let otpInputs = document.querySelectorAll(".otp-box");
+
+    otpInputs.forEach((input, index) => {
+        input.addEventListener("input", function () {
+            if (this.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Backspace" && this.value.length === 0 && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

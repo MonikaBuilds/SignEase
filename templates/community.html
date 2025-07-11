@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Ask a Question</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .community-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Back to Dashboard Button */
+        .back-dashboard {
+            background: #ff4b5c;
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .back-dashboard:hover {
+            background: #d6303b;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .question-list {
+            text-align: left;
+        }
+
+        .question {
+            padding: 12px;
+            margin: 5px 0;
+            background: #f1f1f1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .question:hover {
+            background: #ddd;
+        }
+
+        .answer {
+            display: none;
+            padding: 12px;
+            margin-top: 10px;
+            background: #e8f0fe;
+            border-left: 5px solid #007bff;
+            border-radius: 8px;
+        }
+
+        /* Ask a Question Toggle */
+        .ask-toggle {
+            background: #007BFF;
+            color: white;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .ask-toggle:hover {
+            background: #0056b3;
+        }
+
+        /* Ask a Question Form (Initially Hidden) */
+        .ask-form {
+            display: none;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .ask-form input, .ask-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .ask-form button {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .ask-form button:hover {
+            background: #0056b3;
+        }
+
+        /* User Questions */
+        .user-questions {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .user-question {
+            padding: 12px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="community-container">
+        <!-- Back to Dashboard Button -->
+        <button class="back-dashboard" onclick="redirectToDashboard()">Back to Dashboard</button>
+
+        <h2>Community - Ask a Question</h2>
+        
+        <div class="question-list">
+            <div class="question" onclick="toggleAnswer(0)">1. How do I sign up for SignEase?</div>
+            <div class="answer">Go to the SignEase signup page, enter your details, and create an account.</div>
+
+            <div class="question" onclick="toggleAnswer(1)">2. How does the Text-to-Sign converter work?</div>
+            <div class="answer">You enter text, and SignEase converts it into sign language animations.</div>
+
+            <div class="question" onclick="toggleAnswer(2)">3. Can I practice sign language through games?</div>
+            <div class="answer">Yes! SignEase includes interactive games to help you practice and improve.</div>
+
+            <div class="question" onclick="toggleAnswer(3)">4. How can I reset my password?</div>
+            <div class="answer">Go to the login page and click "Forgot Password" to reset your password.</div>
+
+            <div class="question" onclick="toggleAnswer(4)">5. Is SignEase free to use?</div>
+            <div class="answer">Yes, SignEase is free for basic use, but premium features may be available.</div>
+
+            <div class="question" onclick="toggleAnswer(5)">6. What is Game Mode in SignEase?</div>
+            <div class="answer">Game Mode allows users to learn sign language interactively through quizzes and challenges.</div>
+
+            <div class="question" onclick="toggleAnswer(6)">7. Can I contribute to the community?</div>
+            <div class="answer">Yes, you can ask and answer questions to help others in the community.</div>
+
+            <div class="question" onclick="toggleAnswer(7)">8. How do I change my profile picture?</div>
+            <div class="answer">Go to your profile and click on the profile picture to upload a new one.</div>
+
+            <div class="question" onclick="toggleAnswer(8)">9. What devices support SignEase?</div>
+            <div class="answer">SignEase works on desktop, tablets, and mobile devices.</div>
+        </div>
+
+        <!-- Ask a Question Toggle Button -->
+        <button class="ask-toggle" onclick="toggleAskForm()">Ask a Question</button>
+
+        <!-- Ask a Question Form (Initially Hidden) -->
+        <div class="ask-form" id="askForm">
+            <h3>Submit Your Question</h3>
+            <input type="text" id="userName" placeholder="Your Name" required>
+            <input type="email" id="userEmail" placeholder="Your Email" required>
+            <textarea id="userQuestion" placeholder="Type your question here..." rows="3" required></textarea>
+            <button onclick="submitQuestion()">Submit Question</button>
+        </div>
+
+        <!-- User Questions Section -->
+        <div class="user-questions" id="userQuestionsSection">
+            <h3>User Submitted Questions</h3>
+        </div>
+    </div>
+
+    <script>
+        function toggleAnswer(index) {
+            let answers = document.querySelectorAll('.answer');
+            if (answers[index].style.display === "block") {
+                answers[index].style.display = "none";
+            } else {
+                answers.forEach(answer => answer.style.display = "none");
+                answers[index].style.display = "block";
+            }
+        }
+
+        function toggleAskForm() {
+            let form = document.getElementById('askForm');
+            form.style.display = (form.style.display === "block") ? "none" : "block";
+        }
+
+        function submitQuestion() {
+            let name = document.getElementById('userName').value.trim();
+            let email = document.getElementById('userEmail').value.trim();
+            let question = document.getElementById('userQuestion').value.trim();
+
+            if (name === '' || email === '' || question === '') {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            let questionDiv = document.createElement('div');
+            questionDiv.classList.add('user-question');
+            questionDiv.innerHTML = `<strong>${name}:</strong> ${question}`;
+            document.getElementById('userQuestionsSection').appendChild(questionDiv);
+
+            document.getElementById('userName').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('userQuestion').value = '';
+        }
+
+        function redirectToDashboard() {
+            window.location.href = '/dashboard';
+        }
+    </script>
+
+</body>
+</html>

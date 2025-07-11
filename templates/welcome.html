@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SignEase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .welcome-container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+        .welcome-container h1 {
+            font-size: 36px;
+            color: #007bff;
+        }
+        .welcome-container p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .welcome-container img.logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        .welcome-container button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .welcome-container button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <img src="{{ url_for('static', filename='signeaselogo.webp') }}" alt="SignEase Logo" class="logo">
+        <h1>Welcome to SignEase</h1>
+        <p>Learn, convert, and explore the world of sign language with ease!</p>
+        <button onclick="window.location.href='/signup'">Get Started <i class="fas fa-arrow-right"></i></button>
+        <footer>&copy; 2025 SignEase | Empowering Communication</footer>
+    </div>
+</body>
+</html>
