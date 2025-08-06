@@ -1,5 +1,5 @@
 
-# ✋ Sign Ease – Sign Language Assistant
+#  Sign Ease – Sign Language Assistant
 
 > SignEase is an AI-powered web application designed to promote inclusive communication and learning by bridging the gap between individuals with hearing and speech impairments and the rest of the world. The platform enables users to learn Indian Sign Language, convert text to sign gestures, and translate sign gestures into readable text using computer vision techniques—all in a fun and interactive way.
 
@@ -9,7 +9,7 @@ Whether you're a student learning sign language, a teacher looking to support yo
 
 ---
 
-## 📌 Table of Contents
+##  Table of Contents
 
 - [About the Project](#about-the-project)
 - [Technologies Used](#technologies-used)
@@ -23,7 +23,7 @@ Whether you're a student learning sign language, a teacher looking to support yo
 
 ---
 
-## 📖 About the Project
+##  About the Project
 
 People with hearing and speech impairments face challenges in communication due to lack of accessible tools.  
 **Sign Ease** is a collaborative project that translates between **sign language and text** using intelligent image processing and provides engaging learning modules.
@@ -36,7 +36,7 @@ It includes:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - Python (Flask)
 - HTML, CSS, JavaScript
@@ -46,34 +46,34 @@ It includes:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 🔐 Secure Signup/Login with OTP-based password reset  
-- 🧠 Text-to-Sign conversion using preloaded sign language images  
-- 🖐️ Sign-to-Text conversion using ORB image matching technique  
-- 📚 Learning dashboard with sign tutorials and resources  
-- 🎯 Quiz module to test sign language skills interactively  
-- 👤 Profile section with profile picture upload  
-- 📱 Fully responsive and mobile-friendly design  
-
----
-
-## 🌍 Real-World Applications
-
-- 🏫 Educational platforms for learning Indian Sign Language (ISL)
-- 🏥 Assistive tools in hospitals and government offices
-- 👨‍🏫 Teaching aid for inclusive classrooms
-- 🧏 Community empowerment and accessibility initiatives
+-  Secure Signup/Login with OTP-based password reset  
+-  Text-to-Sign conversion using preloaded sign language images  
+-  Sign-to-Text conversion using ORB image matching technique  
+-  Learning dashboard with sign tutorials and resources  
+-  Quiz module to test sign language skills interactively  
+-  Profile section with profile picture upload  
+-  Fully responsive and mobile-friendly design  
 
 ---
 
-## 🎯 Unique Selling Points (USP)
+##  Real-World Applications
 
-- 🎯 ORB-based image recognition for sign-to-text matching  
-- 🖼️ Rich sign image bank for smooth text-to-sign output  
-- ✉️ Secure OTP password reset via email integration  
-- 🧩 Modular learning with quizzes and score tracking  
-- 🧑‍💻 Simple UI/UX for accessible interaction  
+-  Educational platforms for learning Indian Sign Language (ISL)
+-  Assistive tools in hospitals and government offices
+-  Teaching aid for inclusive classrooms
+-  Community empowerment and accessibility initiatives
+
+---
+
+##  Unique Selling Points (USP)
+
+-  ORB-based image recognition for sign-to-text matching  
+-  Rich sign image bank for smooth text-to-sign output  
+-  Secure OTP password reset via email integration  
+-  Modular learning with quizzes and score tracking  
+-  Simple UI/UX for accessible interaction  
 
 ---
 
