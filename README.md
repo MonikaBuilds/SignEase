@@ -1,4 +1,4 @@
-![signup page](https://github.com/user-attachments/assets/cdd1a121-2641-4f76-9889-9d9b9b3f2fe3)
+
 # ✋ Sign Ease – Sign Language Assistant
 
 > SignEase is an AI-powered web application designed to promote inclusive communication and learning by bridging the gap between individuals with hearing and speech impairments and the rest of the world. The platform enables users to learn Indian Sign Language, convert text to sign gestures, and translate sign gestures into readable text using computer vision techniques—all in a fun and interactive way.
@@ -78,39 +78,17 @@ It includes:
 ---
 
 ## 🖼️ Screenshots
+![welcom page](https://github.com/user-attachments/assets/8fc04efc-e637-45be-b897-c0252381a759)
+![login page](https://github.com/user-attachments/assets/5d78af19-3d31-4a79-b662-c75838c4cad0)
+![signup page](https://github.com/user-attachments/assets/f769a193-3bd8-4d94-a588-e491e0d365fa)
+![forget password](https://github.com/user-attachments/assets/5e7cd8d1-2204-4cc5-bc84-132592a76b0a)
+![forget password otp](https://github.com/user-attachments/assets/8d36f1cf-4c0e-4899-9f3b-72994f6f68b5)
+![reset password](https://github.com/user-attachments/assets/90e63753-7d1a-42fd-a56e-b7b2ae5374e3)
+![signease dashboard](https://github.com/user-attachments/assets/475675f7-b382-49c2-9da5-909817363d93)
+![sign to text page](https://github.com/user-attachments/assets/2fdc623f-b47d-4a00-900b-959b17b0a24e)
+![signease converter](https://github.com/user-attachments/assets/493d20ff-18ba-4a64-8cca-e559a0d3185e)
+![quizes](https://github.com/user-attachments/assets/567bc727-c617-4e2c-a921-b7d3e716895e)
+![profile](https://github.com/user-attachments/assets/bf0a5355-b070-4b2b-b568-4b27bcd75432)
 
 
-```md
-### 👋 Welcome Page
-![Welcome Page](https://github.com/MonikaBuilds/SignEase/blob/main/welcom%20page.jpg)
-
-### 🔐 Login Page
-![Login](https://github.com/MonikaBuilds/SignEase/blob/main/login%20page.jpg)
-
-### 📝 Sign Up Page
-![Signup](https://github.com/MonikaBuilds/SignEase/blob/main/signup%20page.jpg)
-
-### 📬 Forgot Password
-![Forgot Password](https://github.com/MonikaBuilds/SignEase/blob/main/forget%20password.jpg)
-
-### 🔄 OTP Verification
-![OTP Page](https://github.com/MonikaBuilds/SignEase/blob/main/forget%20password%20otp.jpg)
-
-### 🔁 Reset Password
-![Reset Password](https://github.com/MonikaBuilds/SignEase/blob/main/reset%20password.jpg)
-
-### 🏠 Dashboard
-![Dashboard](https://github.com/MonikaBuilds/SignEase/blob/main/signease%20dashboard.jpg)
-
-### 🔤 Text to Sign
-![Converter](https://github.com/MonikaBuilds/SignEase/blob/main/signease%20converter.jpg)
-
-### 🔠 Sign to Text
-![Sign to Text](https://github.com/MonikaBuilds/SignEase/blob/main/sign%20to%20text%20page.jpg)
-
-### 🧠 Quiz Page
-![Quizzes](https://github.com/MonikaBuilds/SignEase/blob/main/quizes.jpg)
-
-### 👤 Profile Page
-![Profile](https://github.com/MonikaBuilds/SignEase/blob/main/profile.jpg)
 
