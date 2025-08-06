@@ -74,7 +74,6 @@ It includes:
 
 ## 🖼️ Screenshots
 
-> 📌 Make sure to upload your images in GitHub and replace these links
 
 ```md
 ![Home Page](https://github.com/your-username/sign-ease/assets/homepage.png)
