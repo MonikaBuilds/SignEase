@@ -1,6 +1,10 @@
 # ✋ Sign Ease – Sign Language Assistant
 
-> A smart assistive web application designed to **bridge communication gaps** between individuals with hearing or speech impairments and the world through sign language translation and learning modules.
+> SignEase is an AI-powered web application designed to promote inclusive communication and learning by bridging the gap between individuals with hearing and speech impairments and the rest of the world. The platform enables users to learn Indian Sign Language, convert text to sign gestures, and translate sign gestures into readable text using computer vision techniques—all in a fun and interactive way.
+
+The inspiration behind SignEase was the lack of accessible, user-friendly tools for people who rely on sign language for daily communication. Our goal was to design a platform that could educate, assist, and empower users to understand and use sign language more effectively. It serves not only as an educational platform but also as a tool that fosters inclusivity and accessibility in communication.
+
+Whether you're a student learning sign language, a teacher looking to support your students, or someone with speech or hearing challenges, SignEase provides a personalized, secure, and hands-on learning experience.
 
 ---
 
