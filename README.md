@@ -76,9 +76,36 @@ It includes:
 
 
 ```md
-![Home Page](https://github.com/your-username/sign-ease/assets/homepage.png)
-![Login](https://github.com/your-username/sign-ease/assets/login.png)
-![Text to Sign](https://github.com/your-username/sign-ease/assets/text-to-sign.png)
-![Sign to Text](https://github.com/your-username/sign-ease/assets/sign-to-text.png)
-![Profile](https://github.com/your-username/sign-ease/assets/profile.png)
-![Quiz](https://github.com/your-username/sign-ease/assets/quiz.png)
+### 👋 Welcome Page
+![Welcome Page](https://github.com/MonikaBuilds/SignEase/blob/main/welcom%20page.jpg)
+
+### 🔐 Login Page
+![Login](https://github.com/MonikaBuilds/SignEase/blob/main/login%20page.jpg)
+
+### 📝 Sign Up Page
+![Signup](https://github.com/MonikaBuilds/SignEase/blob/main/signup%20page.jpg)
+
+### 📬 Forgot Password
+![Forgot Password](https://github.com/MonikaBuilds/SignEase/blob/main/forget%20password.jpg)
+
+### 🔄 OTP Verification
+![OTP Page](https://github.com/MonikaBuilds/SignEase/blob/main/forget%20password%20otp.jpg)
+
+### 🔁 Reset Password
+![Reset Password](https://github.com/MonikaBuilds/SignEase/blob/main/reset%20password.jpg)
+
+### 🏠 Dashboard
+![Dashboard](https://github.com/MonikaBuilds/SignEase/blob/main/signease%20dashboard.jpg)
+
+### 🔤 Text to Sign
+![Converter](https://github.com/MonikaBuilds/SignEase/blob/main/signease%20converter.jpg)
+
+### 🔠 Sign to Text
+![Sign to Text](https://github.com/MonikaBuilds/SignEase/blob/main/sign%20to%20text%20page.jpg)
+
+### 🧠 Quiz Page
+![Quizzes](https://github.com/MonikaBuilds/SignEase/blob/main/quizes.jpg)
+
+### 👤 Profile Page
+![Profile](https://github.com/MonikaBuilds/SignEase/blob/main/profile.jpg)
+
