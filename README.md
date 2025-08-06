@@ -77,7 +77,7 @@ It includes:
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 ![welcom page](https://github.com/user-attachments/assets/8fc04efc-e637-45be-b897-c0252381a759)
 ![login page](https://github.com/user-attachments/assets/5d78af19-3d31-4a79-b662-c75838c4cad0)
 ![signup page](https://github.com/user-attachments/assets/f769a193-3bd8-4d94-a588-e491e0d365fa)
